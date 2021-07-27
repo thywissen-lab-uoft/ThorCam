@@ -43,9 +43,9 @@ dcc_overrideUnit='ms';
 % Box Count
 doBoxCount=1;           % Box count analysis
 
-doAnimate=0;
+doAnimate=1;
 
-dcc_doSave=0;
+dcc_doSave=1;
 %% Select image directory
 
 global dcc_imgdir
@@ -135,8 +135,26 @@ if doBoxCount
     dcc_data=dcc_boxCount(dcc_data,bgROI);
     
     [dcc_hF_numberbox,dcc_Ndatabox]=dcc_showBoxCounts(dcc_data,dcc_xVar,boxPopts); 
-    if dcc_doSave;saveFigure(dcc_data,dcc_hF_numberbox,'dcc_box_number');end
+    if dcc_doSave;dcc_saveFigure(dcc_data,dcc_hF_numberbox,'dcc_box_number');end
     
+end
+
+%% Animate
+
+if doAnimate
+    dcc_animate_opts=struct;
+    dcc_animate_opts.CLim=[0 150];    
+%   dcc_animate_opts.CLim='auto';    
+    dcc_animate_opts.XCut=635;
+    dcc_animate_opts.YCut=505;
+    dcc_animate_opts.StartDelay=3;   % Time to hold on first picture
+    dcc_animate_opts.MidDelay=1;    % Time to hold in middle picutres
+    dcc_animate_opts.EndDelay=2;     % Time to hold final picture
+    dcc_animate_opts.doAverage=1;    % Average over duplicates?
+    dcc_animate_opts.xUnit=dcc_unit;
+    dcc_animate_opts.Order='ascend';   
+    
+   dcc_animate(dcc_data,dcc_xVar,dcc_animate_opts) 
 end
 
     

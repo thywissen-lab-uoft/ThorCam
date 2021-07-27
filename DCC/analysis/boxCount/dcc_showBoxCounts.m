@@ -59,7 +59,7 @@ hax=axes;
 set(hax,'box','on','linewidth',1,'fontsize',12,'units','pixels');
 hold on
 xlabel([xVar ' (' opts.xUnit ')'],'interpreter','none');
-ylabel('box atom counts');
+ylabel('box counts');
 
 hax.Position(4)=hax.Position(4)-20;
 

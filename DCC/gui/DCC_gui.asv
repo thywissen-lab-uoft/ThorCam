@@ -145,7 +145,7 @@ uicontrol('style','pushbutton','CData',cdata,'callback',@saveCB,...
 % Auto Save check box
 ttstr=['poop'];
 hcacq=uicontrol('style','checkbox','string','auto acquire?','fontsize',8,...
-    'backgroundcolor','w','Position',[85 20 90 25],'value',0,...
+    'backgroundcolor','w','Position',[85 20 90 25],'value',1,...
     'ToolTipString',ttstr);
 
 
@@ -285,7 +285,7 @@ function updateFcn(~,~)
         end
     
         % Does the current image meet the threshold for analysis?
-        if ((Nsum>Nthreshold) && hcacq.Value) || doForce
+        if (Nsum>Nthreshold) || doForce
            acq=true;
            % Keep track of the brightness image during the acquisition
            if Nsum>Nimg_sum
