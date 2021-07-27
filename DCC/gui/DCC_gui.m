@@ -1,4 +1,4 @@
-function DCC
+function DCC_gui
 
 %%
 guiname='DCC Live';
@@ -83,6 +83,11 @@ hf2.Tag='GUI';
 % Image subplot
 subplot(5,5,[1 2 3 4 6 7 8 9 11 12 13 14 16 17 18 19]);
 hImg2=imagesc(Zimg);
+
+
+tLbl=text(5,5,'beep','color','red','fontweight','bold','margin',1,...
+    'backgroundcolor',[ 1 1 1 .5],'units','pixels',...
+    'verticalalignment','bottom','interpreter','none','fontsize',8);
 
 % X Cut plot
 subplot(5,5,[21 22 23 24]);
@@ -318,7 +323,7 @@ end
         
         [data.Params,data.Units,data.Flags]=grabSequenceParams2;
 
-
+        tLbl.String=str;
         
         
         
@@ -330,7 +335,7 @@ end
 
     % Close request function for the main GUI
     function closeMain(~,~)    
-        if isequal(liveTimer.Running,'on')
+        if exist('liveTimer') && isequal(liveTimer.Running,'on')
             stop(liveTimer);
             closeMain;
         else    
